@@ -1,32 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Json</title>
 </head>
+
 <body>
     <h1>JSON</h1>
     <h2>JavaScript Object Notation</h2>
-    <script>
-        const user={ id:245,
-        name:"Masud",
-        friends:["jamal","kamal","samal"],
-        friendAge:[12,14,15,16,67],
-        lovers:{
-            name:"rabbi",
-            age:90,
-            food:"tormuj"
-        }
-        };
-        //json structure 
-        const userJson=JSON.stringify(user);
-        console.log(userJson);
+    <ul id="user-name">
 
-        //now we convert json into object
-        const userJsonToObj=JSON.parse(userJson);
-        console.log(userJsonToObj);
+    </ul>
+    <ul id="user-email">
+
+    </ul>
+    <script>
+        // const user={ id:245,
+        // name:"Masud",
+        // friends:["jamal","kamal","samal"],
+        // friendAge:[12,14,15,16,67],
+        // lovers:{
+        //     name:"rabbi",
+        //     age:90,
+        //     food:"tormuj"
+        // }
+        // };
+        // //json structure 
+        // const userJson=JSON.stringify(user);
+        // console.log(userJson);
+
+        // //now we convert json into object
+        // const userJsonToObj=JSON.parse(userJson);
+        // console.log(userJsonToObj);
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => response.json())
+            .then(json => displayUsers(json))
+
+            //what we are doing here is ,we fetched some fake data from online and now we would like to show username from those data
+            function displayUsers(users){
+                const ul =document.getElementById("user-name");
+                console.log("users",users);
+                //captured all user names using map
+                const userNames=users.map(user=>user.username);
+                console.log(userNames);
+                
+                for(let i=0;i<userNames.length;i++){
+                    const user=userNames[i];
+                    const li=document.createElement('li');
+                    li.innerText=user;
+                    ul.appendChild(li);
+
+                    //we did a loop through those usernames
+                    //we got a single user 
+                    //created a list using js
+                    //set innerText of the list is user
+                    //created a child list for ul
+
+                }
+                const ul1=document.getElementById("user-email");
+                const userEmail = users.map(emails=>emails.email);
+                console.log(userEmail);
+                for(let i=0;i<userEmail.length;i++){
+                    const email = userEmail[i];
+                    const li=document.createElement('li');
+                    li.innerText=email;
+                    ul1.appendChild(li);
+                }
+            }
+        
     </script>
 </body>
+
 </html>
