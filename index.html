@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Json</title>
+</head>
+<body>
+    <h1>JSON</h1>
+    <h2>JavaScript Object Notation</h2>
+    <script>
+        const user={ id:245,
+        name:"Masud",
+        friends:["jamal","kamal","samal"],
+        friendAge:[12,14,15,16,67],
+        lovers:{
+            name:"rabbi",
+            age:90,
+            food:"tormuj"
+        }
+        };
+        //json structure 
+        const userJson=JSON.stringify(user);
+        console.log(userJson);
+
+        //now we convert json into object
+        const userJsonToObj=JSON.parse(userJson);
+        console.log(userJsonToObj);
+    </script>
+</body>
+</html>
