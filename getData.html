@@ -38,6 +38,7 @@
         fetch('https://jsonplaceholder.typicode.com/users')
             .then(response => response.json())
             .then(json => displayUsers(json))
+            .catch(error=>console.log(error))
 
             //what we are doing here is ,we fetched some fake data from online and now we would like to show username from those data
             function displayUsers(users){

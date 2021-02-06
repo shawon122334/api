@@ -1,0 +1,68 @@
+<!-- in this file we learn how to send data to server as post . -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Json PostData</title>
+
+</head>
+
+<body>
+    <h1>JSON POST DATA</h1>
+    <h2>JavaScript Object Notation</h2>
+    <ul id="user-name">
+
+    </ul>
+    <input id="title" type="text" placeholder="title">
+    <br>
+    <input id="bodyContainer" type="text" placeholder="body">
+    <br>
+    <button id="submit">submit</button>
+    <script>
+        // const postInfo = {
+        //     title: 'foo',
+        //     body: 'bar',
+        //     userId: 1,
+        // }
+        document.getElementById("submit").addEventListener('click',function(){
+            const titleGet=document.getElementById("title").value;
+            const bodyGet=document.getElementById("bodyContainer").value;
+            // console.log(titleGet);
+            // console.log(bodyGet);
+            const post={title:titleGet,body:bodyGet,id:10};
+            newPostToServer(post);
+        })
+        function newPostToServer(postInfo) {
+            fetch('https://jsonplaceholder.typicode.com/posts', {
+                method: 'POST',
+                body: JSON.stringify(postInfo),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
+            })
+                .then((response) => response.json())
+                .then((data) => console.log(data));
+        }
+        //then response : if we get a return as response we make it json
+        //then data : output
+
+
+        //function for getting user name 
+        // function displayUserName(users) {
+        //     // console.log('users',users);
+        //     userName = document.getElementById("user-name");
+        //     userNames = users.map(user => user.username);
+        //     for (let i = 0; i < userNames.length; i++) {
+        //         user = userNames[i];
+        //         const li = document.createElement('li');
+        //         li.innerText = user;
+        //         userName.appendChild(li);
+        //     }
+        // }
+    </script>
+</body>
+
+</html>
